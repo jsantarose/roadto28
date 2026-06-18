@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road to LA28 — Men's −68kg Campaign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#13171F; --ink-2:#1C222D; --paper:#EBEEF3; --panel:#FFFFFF;
+    --chung:#1A5FD0; --chung-d:#103E8C; --hong:#D11F39; --hong-d:#9c1528;
+    --gold:#C9A227; --gold-d:#9c7d18;
+    --muted:#5C6573; --muted-2:#8a93a3; --line:#D6DCE5; --line-2:#E7EBF1;
+    --ok:#1B8a5a; --warn:#C9701f;
+    --disp:'Oswald',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:var(--disp);font-weight:600;line-height:1.05;margin:0;text-transform:uppercase;letter-spacing:.01em}
+  a{color:var(--chung-d);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;padding:64px 24px 56px}
+  .hero .corner{position:absolute;width:46vw;height:46vw;max-width:520px;max-height:520px;border-radius:50%;filter:blur(8px);opacity:.5}
+  .hero .c-blue{background:radial-gradient(circle at 30% 30%,var(--chung),transparent 65%);top:-14%;left:-12%}
+  .hero .c-red{background:radial-gradient(circle at 70% 70%,var(--hong),transparent 65%);bottom:-18%;right:-12%}
+  .hero-inner{position:relative;max-width:1080px;margin:0 auto;z-index:2}
+  .eyebrow{font-family:var(--disp);text-transform:uppercase;letter-spacing:.28em;font-size:13px;font-weight:500;color:var(--gold)}
+  .hero h1{font-size:clamp(44px,9vw,108px);font-weight:700;margin:14px 0 6px;letter-spacing:.005em}
+  .hero h1 .blue{color:#6ea8ff}.hero h1 .red{color:#ff6f82}
+  .hero .sub{font-size:clamp(17px,2.4vw,22px);max-width:680px;color:#c7cedb;font-weight:400}
+  .scoreboard{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .sb{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px 18px;min-width:120px}
+  .sb .n{font-family:var(--mono);font-size:30px;font-weight:700;color:#fff;line-height:1}
+  .sb .l{font-size:11.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted-2);margin-top:8px;font-weight:600}
+  .verdict{margin-top:34px;border-left:3px solid var(--gold);padding:12px 0 12px 20px;max-width:760px;color:#dde3ec;font-size:15.5px}
+  .verdict b{color:#fff}
+
+  /* ---------- LAYOUT ---------- */
+  .shell{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:236px 1fr;gap:0}
+  nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:26px 18px 40px;border-right:1px solid var(--line);background:var(--paper)}
+  nav.toc .brand{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:15px;letter-spacing:.04em;color:var(--ink);line-height:1.1;margin-bottom:4px}
+  nav.toc .brand small{display:block;font-family:var(--body);font-weight:600;font-size:11px;letter-spacing:.14em;color:var(--hong);margin-top:6px}
+  nav.toc ol{list-style:none;margin:18px 0 0;padding:0;counter-reset:s}
+  nav.toc li{counter-increment:s}
+  nav.toc a{display:flex;gap:9px;padding:6px 8px;border-radius:7px;color:var(--muted);font-size:13px;font-weight:500;line-height:1.25}
+  nav.toc a::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--muted-2);padding-top:1px}
+  nav.toc a:hover{background:var(--line-2);text-decoration:none;color:var(--ink)}
+  nav.toc a.active{background:var(--ink);color:#fff}
+  nav.toc a.active::before{color:var(--gold)}
+  main{padding:0 0 80px;min-width:0}
+  .navbtn{display:none}
+
+  section.block{padding:52px 40px;border-bottom:1px solid var(--line);scroll-margin-top:10px}
+  section.block:nth-child(even){background:#e4e8ef}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-num{font-family:var(--mono);font-size:14px;color:var(--hong);font-weight:700}
+  h2.sec-title{font-size:clamp(26px,4vw,40px);font-weight:700}
+  .lede{font-size:17px;color:var(--ink-2);max-width:760px;margin:14px 0 26px}
+  .lede.tight{margin-bottom:14px}
+  p{margin:0 0 14px;max-width:820px}
+  .small{font-size:13.5px;color:var(--muted)}
+  strong{font-weight:700}
+
+  /* cards / grids */
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .card h3{font-size:18px;margin-bottom:6px;text-transform:none;font-weight:600;letter-spacing:0}
+  .card .k{font-family:var(--mono);font-size:12px;letter-spacing:.04em;font-weight:700;text-transform:uppercase}
+  .tag{display:inline-block;font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;margin-bottom:10px}
+  .t-real{background:#e7f4ee;color:var(--ok);border:1px solid #b8e0cd}
+  .t-stretch{background:#fdeef0;color:var(--hong-d);border:1px solid #f3c7cf}
+  .t-back{background:#eef2fb;color:var(--chung-d);border:1px solid #cdd9f3}
+  .t-na{background:#eef0f3;color:var(--muted);border:1px solid var(--line)}
+  .t-gold{background:#fbf3d8;color:var(--gold-d);border:1px solid #ecd99a}
+
+  ul.clean{margin:0 0 14px;padding-left:0;list-style:none}
+  ul.clean li{position:relative;padding:7px 0 7px 26px;border-bottom:1px solid var(--line-2);max-width:840px}
+  ul.clean li:last-child{border-bottom:0}
+  ul.clean li::before{content:"";position:absolute;left:4px;top:15px;width:8px;height:8px;background:var(--chung);border-radius:2px;transform:rotate(45deg)}
+  ul.clean li.red::before{background:var(--hong)}
+  ul.clean li.gold::before{background:var(--gold)}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:6px 0 18px}
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line-2)}
+  th{background:var(--ink);color:#fff;font-family:var(--disp);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:500;white-space:nowrap}
+  td.mono,th.mono{font-family:var(--mono)}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#f5f7fb}
+  .hl{background:#fbf3d8 !important}
+  .big{font-family:var(--mono);font-weight:700;color:var(--hong-d)}
+
+  .callout{border:1px solid var(--line);border-left:4px solid var(--gold);background:var(--panel);border-radius:8px;padding:16px 18px;margin:18px 0;max-width:840px}
+  .callout.blue{border-left-color:var(--chung)}
+  .callout.red{border-left-color:var(--hong)}
+  .callout .k{font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px}
+
+  /* loophole list */
+  .loot{counter-reset:lp}
+  .loot .row{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .loot .row:last-child{border-bottom:0}
+  .loot .row::before{counter-increment:lp;content:counter(lp,decimal-leading-zero);font-family:var(--mono);font-weight:700;color:var(--gold-d);font-size:14px;padding-top:3px;min-width:26px}
+  .loot h4{font-size:16px;text-transform:none;letter-spacing:0;font-weight:700;margin-bottom:3px}
+  .loot p{margin:0;font-size:14.5px;color:var(--ink-2)}
+
+  /* timeline */
+  .rail{position:relative;margin:10px 0 0;padding-left:30px}
+  .rail::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:3px;background:linear-gradient(var(--chung),var(--hong))}
+  .yr{font-family:var(--disp);font-weight:700;font-size:22px;margin:26px 0 8px;color:var(--ink)}
+  .yr:first-child{margin-top:6px}
+  .ev{position:relative;padding:10px 0 10px 4px;border-bottom:1px solid var(--line-2);max-width:840px}
+  .ev::before{content:"";position:absolute;left:-29px;top:16px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--chung)}
+  .ev.key::before{border-color:var(--hong);background:var(--hong)}
+  .ev.win::before{border-color:var(--gold);background:var(--gold)}
+  .ev .d{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--hong-d);text-transform:uppercase;letter-spacing:.03em}
+  .ev .w{font-weight:600}
+  .ev .why{font-size:13.5px;color:var(--muted)}
+
+  /* decision tree */
+  .tree{font-family:var(--mono);font-size:13px;background:var(--ink);color:#dfe5ef;border-radius:12px;padding:22px;overflow-x:auto;line-height:1.9}
+  .tree b{color:#fff}.tree .g{color:var(--gold)}.tree .bl{color:#6ea8ff}.tree .rd{color:#ff8593}
+
+  .checklist{max-width:870px}
+  .cl-group{margin:0 0 24px}
+  .cl-group h3{font-size:14px;text-transform:uppercase;letter-spacing:.07em;color:var(--hong-d);font-family:var(--disp);font-weight:600;margin:0 0 6px;padding-bottom:7px;border-bottom:2px solid var(--line)}
+  label.check{display:flex;gap:13px;align-items:flex-start;padding:9px 2px;border-bottom:1px solid var(--line-2);cursor:pointer}
+  .cl-group label.check:last-child{border-bottom:0}
+  label.check input{appearance:none;-webkit-appearance:none;min-width:20px;height:20px;margin:2px 0 0;border:2px solid var(--muted-2);border-radius:5px;cursor:pointer;position:relative;background:#fff}
+  label.check input:checked{background:var(--chung);border-color:var(--chung)}
+  label.check input:checked::after{content:"✓";position:absolute;inset:-2px 0 0 0;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  label.check input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  label.check span{font-size:14.5px;color:var(--ink-2)}
+  label.check input:checked ~ span{color:var(--muted-2);text-decoration:line-through}
+  label.check .g{font-family:var(--mono);font-weight:700;color:var(--hong-d);font-size:12.5px}
+  footer{background:var(--ink);color:#aeb6c4;padding:34px 40px;font-size:13px}
+  footer .eyebrow{color:var(--gold)}
+  footer p{max-width:900px;color:#aeb6c4}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  @media (max-width:900px){
+    .shell{grid-template-columns:1fr}
+    nav.toc{position:fixed;inset:0 0 0 auto;width:260px;height:100vh;z-index:50;transform:translateX(100%);transition:transform .25s ease;border-left:1px solid var(--line);border-right:0;box-shadow:-10px 0 30px rgba(0,0,0,.18)}
+    nav.toc.open{transform:none}
+    .navbtn{display:flex;position:fixed;top:14px;right:14px;z-index:60;background:var(--ink);color:#fff;border:0;border-radius:8px;font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;padding:10px 14px;cursor:pointer;align-items:center;gap:8px}
+    section.block{padding:40px 22px}
+    .g2,.g3{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<button class="navbtn" id="navbtn" aria-label="Open contents">Contents ▾</button>
+
+<header class="hero">
+  <div class="corner c-blue"></div><div class="corner c-red"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Team USA · Road to Los Angeles 2028</div>
+    <h1>One seat.<br><span class="blue">−68</span> <span class="red">kg</span>.</h1>
+    <p class="sub">128 fighters. 8 weight classes. Exactly one American man can stand on the −68kg mat in LA. This is the complete map of every way to make him that man — every route, every rule, every edge.</p>
+    <div class="scoreboard">
+      <div class="sb"><div class="n">1</div><div class="l">USA man at −68kg</div></div>
+      <div class="sb"><div class="n">5</div><div class="l">Routes in</div></div>
+      <div class="sb"><div class="n">40</div><div class="l">Point cap on opens / yr</div></div>
+      <div class="sb"><div class="n">2027</div><div class="l">The decisive season</div></div>
+      <div class="sb"><div class="n">2026</div><div class="l">Where it starts</div></div>
+    </div>
+    <div class="verdict">
+      <b>The honest read:</b> finishing top-5 in the world in one senior season is a long shot in a division this deep. His most realistic door is the <b>host-country quota</b> — and the work that opens it is the <em>same</em> work that chases the ranking. So he runs one campaign and keeps every door open at once.
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="brand">Road to LA28<small>MEN'S −68KG · DOSSIER</small></div>
+    <ol>
+      <li><a href="#fighter">The fighter &amp; the target</a></li>
+      <li><a href="#routes">The 5 routes in</a></li>
+      <li><a href="#scoreboards">The two scoreboards</a></li>
+      <li><a href="#engine">The points engine</a></li>
+      <li><a href="#edges">Every edge &amp; loophole</a></li>
+      <li><a href="#opt1">Route 1 · World ranking</a></li>
+      <li><a href="#opt3">Route 2 · Host quota</a></li>
+      <li><a href="#opt4">Route 3 · Reallocation</a></li>
+      <li><a href="#opt2">Route 4 · Grand Slam</a></li>
+      <li><a href="#div">The −63 / −68 play</a></li>
+      <li><a href="#gateway">The domestic gateway</a></li>
+      <li><a href="#timeline">Master timeline</a></li>
+      <li><a href="#tree">Decision tree</a></li>
+      <li><a href="#risks">Traps to avoid</a></li>
+      <li><a href="#act">Do this now</a></li>
+      <li><a href="#checklist">Checklist</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+  <!-- 1 -->
+  <section class="block reveal" id="fighter">
+    <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">The fighter &amp; the target</h2></div>
+    <p class="lede tight">A seasoned junior (Cadet Worlds, Junior Worlds) turning 17 in January 2027 — which makes him a senior for all of 2027 and eligible for LA28.</p>
+    <div class="grid g3">
+      <div class="card"><div class="k" style="color:var(--chung)">Eligibility</div><h3>Cleared</h3><p class="small">Born on/before 31 Dec 2011, so he meets the LA28 age rule. Senior age is by year — he's senior-eligible the whole of 2027.</p></div>
+      <div class="card"><div class="k" style="color:var(--hong)">Division</div><h3>−68kg Olympic</h3><p class="small">One of four men's Olympic classes. The USA may send only one man here, by any route.</p></div>
+      <div class="card"><div class="k" style="color:var(--gold-d)">Host edge</div><h3>USA hosts</h3><p class="small">Opens a host quota and an Olympic 4-seed — but <em>closes</em> the Pan Am continental qualifier to him.</p></div>
+    </div>
+    <div class="callout"><div class="k">Paperwork (already handled — keep it live)</div>Kukkiwon Dan, WT Global Athlete License, U.S. passport valid 6 months past the Games, GMS registration, annual medical certificate, travel insurance, SafeSport &amp; anti-doping/whereabouts compliance. Any one lapsing ends the run, so treat them as standing maintenance.</div>
+  </section>
+
+  <!-- 2 -->
+  <section class="block reveal" id="routes">
+    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">The five routes in</h2></div>
+    <p class="lede">Only one American man competes at −68kg. Here is every door to being that man, ranked by how realistic each is for a first-year senior.</p>
+    <div class="grid g2">
+      <div class="card"><span class="tag t-back">Backbone</span><h3>Host-country quota</h3><p class="small">USATKD picks 2 men's divisions for guaranteed host seats. Win the case that −68kg is one of them and he's the pick. His most realistic route. <a href="#opt3">→ Route 2</a></p></div>
+      <div class="card"><span class="tag t-stretch">Stretch</span><h3>WT Olympic Ranking — top 5</h3><p class="small">Top 5 in the world at −68kg on the Jan 2028 ranking = automatic seat, no host spot used. Hard from a standing start, pursued anyway. <a href="#opt1">→ Route 1</a></p></div>
+      <div class="card"><span class="tag t-real">Live safety net</span><h3>Reallocation</h3><p class="small">Finish 6th–20th and catch a seat when higher athletes or NOCs decline — including unused continental places. Rank high to qualify. <a href="#opt4">→ Route 3</a></p></div>
+      <div class="card"><span class="tag t-stretch">Long shot</span><h3>Grand Slam Champions Series</h3><p class="small">Be #1 on Grand Slam merit points. Elite-entry only — a bonus if he wins big, not a plan. <a href="#opt2">→ Route 4</a></p></div>
+    </div>
+    <div class="callout red"><div class="k">Closed</div><strong>Continental (Pan Am) qualifier &amp; Universality places.</strong> The host nation can't enter its own continental qualifier, and Universality is for small-delegation nations. Neither is available — don't build around them. (But see the reallocation edge in §05.)</div>
+  </section>
+
+  <!-- 3 -->
+  <section class="block reveal" id="scoreboards">
+    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">The two scoreboards</h2></div>
+    <p class="lede">He's playing for two things at once — and the beauty is that the same results move both.</p>
+    <div class="grid g2">
+      <div class="card" style="border-top:4px solid var(--chung)"><h3>A · The ranking number</h3><p class="small">His WT Olympic Ranking position. Top 5 wins a seat outright; a high number feeds the reallocation net. Decided by the <strong>January 2028</strong> ranking.</p></div>
+      <div class="card" style="border-top:4px solid var(--hong)"><h3>B · The selection case</h3><p class="small">USATKD's host-quota decision, made by <strong>30 Sept 2027</strong>. Subjective, but they've published exactly what they weigh — medals at big events, recent form, wins over ranked names.</p></div>
+    </div>
+    <p>Pan Am medals, Grand Prix runs, quality wins — every one of them raises the ranking <em>and</em> strengthens the selection case. He never has to choose between the two; he runs a single campaign and both scoreboards climb together.</p>
+  </section>
+
+  <!-- 4 -->
+  <section class="block reveal" id="engine">
+    <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">The points engine</h2></div>
+    <p class="lede">How ranking points actually work — because the rules reward a handful of big events far more than a season of small ones.</p>
+
+    <h3 style="font-size:18px;margin:18px 0 4px;text-transform:none;letter-spacing:0">Points by finish &amp; event grade</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Finish</th><th class="mono">G1 open</th><th class="mono">G2 open</th><th class="mono">G3 Pres. Cup</th><th class="mono">G4 Pan Am</th><th class="mono">G6 GP Series</th><th class="mono">G10 GP Final</th><th class="mono">G14 Worlds</th></tr></thead>
+      <tbody>
+        <tr><td>Gold</td><td class="mono">10</td><td class="mono">20</td><td class="mono">30</td><td class="mono">40</td><td class="mono">60</td><td class="mono">100</td><td class="mono big">140</td></tr>
+        <tr><td>Silver</td><td class="mono">6</td><td class="mono">12</td><td class="mono">18</td><td class="mono">24</td><td class="mono">36</td><td class="mono">60</td><td class="mono">84</td></tr>
+        <tr><td>Bronze</td><td class="mono">3.6</td><td class="mono">7.2</td><td class="mono">10.8</td><td class="mono">14.4</td><td class="mono">21.6</td><td class="mono">36</td><td class="mono">50.4</td></tr>
+        <tr><td>5th</td><td class="mono">2.16</td><td class="mono">4.32</td><td class="mono">6.48</td><td class="mono">8.64</td><td class="mono">12.96</td><td class="mono">15.12</td><td class="mono">30.24</td></tr>
+        <tr><td>9th</td><td class="mono">1.51</td><td class="mono">3.02</td><td class="mono">4.54</td><td class="mono">6.05</td><td class="mono">9.07</td><td class="mono">10.58</td><td class="mono">21.17</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">GP Challenge uses the G2 column (and pays its 4th place 4.32). Olympic Games (G20) gold is 200 — beyond this campaign's scope.</p>
+
+    <div class="callout red"><div class="k">The cap — the rule most people miss</div>All <strong>G1 + G2 + G3</strong> results combined can contribute a <strong>maximum of 40 points across all of 2027</strong> (plus 20 in Jan–May 2028, which lands after the deadline). Two good G2 wins and that bucket is full. <strong>One GP Series gold (60) beats a whole year of opens.</strong> Small events are for cracking into the ranking early — not for the final total.</div>
+
+    <div class="callout blue"><div class="k">Two events that dodge the cap</div><strong>Pan Am President's Cup</strong> (own-continent G3, gold 30) and the <strong>GP Challenge</strong> (G2, gold 20) are explicitly <em>excluded</em> from the 40-point cap. Stacked with the capped 40, that's up to 90 points from "minor" events.</div>
+
+    <div class="grid g3">
+      <div class="card"><div class="k" style="color:var(--chung)">Cumulation</div><p class="small">The −68kg Olympic ranking sums points from <strong>three</strong> World divisions: −63, −68 and −74. Points won at −63 count toward −68 (see §10).</p></div>
+      <div class="card"><div class="k" style="color:var(--chung)">No decay in 2027</div><p class="small">Everything won in 2027 sits at <strong>full value</strong> in the Jan 2028 ranking. Pack the calendar — there's no penalty for volume.</p></div>
+      <div class="card"><div class="k" style="color:var(--chung)">Field-size rule</div><p class="small">An event with fewer than <strong>4 countries or 4 athletes</strong> in the division pays <strong>zero</strong> ranking points. Check entries before traveling.</p></div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="block reveal" id="edges">
+    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Every edge &amp; loophole</h2></div>
+    <p class="lede">The small, legal advantages most athletes leave on the table. Use all of them.</p>
+    <div class="loot">
+      <div class="row"><div><h4>Farm the uncapped trio</h4><p>Pan Am President's Cup (G3, own continent) and the odd-year GP Challenge (G2) sit outside the 40-point cap. So does the Continental Junior Championship. Win these for points that "don't count against" the open limit.</p></div></div>
+      <div class="row"><div><h4>Three divisions feed −68</h4><p>−63, −68 and −74 World results all cumulate into the −68 Olympic ranking. He can hunt points wherever the field is softest among them — most practically −63 (see §10). Lock −68 as his Olympic category so they land correctly.</p></div></div>
+      <div class="row"><div><h4>Junior-medal carryover</h4><p>Youth Olympic / Junior Worlds / Continental Junior <em>medals</em> carry into the senior Olympic ranking the year he turns 17 (2027): YOG gold 60, Junior Worlds gold 40, Continental Junior gold 20. Possibly free banked points — verify his medals fall in the valid window.</p></div></div>
+      <div class="row"><div><h4>Dakar 2026 YOG is a double-dip</h4><p>Making the 2026 Youth Olympic team is both a route into the 2027 Senior Team Trials <em>and</em> a carryover-points event (YOG gold = 60). Two birds.</p></div></div>
+      <div class="row"><div><h4>The reallocation backdoor catches unused continental seats</h4><p>He can't <em>enter</em> the Pan Am qualifier — but if continental seats go unfilled, they reallocate to the next-highest-ranked eligible athlete "from any continent" on the Jan 2028 ranking. A high USA ranking can scoop one. Ranking high pays off even on the closed pathway.</p></div></div>
+      <div class="row"><div><h4>Host 4-seed at the Games</h4><p>Qualify through the host quota and he's seeded 4th in the LA bracket — a softer Olympic draw on top of the seat itself.</p></div></div>
+      <div class="row"><div><h4>Steer the host-division choice</h4><p>USATKD tends to "spend" host seats on divisions they <em>won't</em> fill by ranking. If the USA's other men look likely to rank-qualify, −68 becomes the natural host pick — so being the clear −68 #1 with podium proof positions him perfectly.</p></div></div>
+      <div class="row"><div><h4>Beating names after the reset counts double</h4><p>USATKD explicitly credits wins over ranked athletes — and specifically beating established names <em>after the ranking reset</em>. A newcomer's upset wins are exactly what the rubric rewards.</p></div></div>
+      <div class="row"><div><h4>The Team Trials second chance</h4><p>At U.S. Team Trials, a Day-1 semifinalist who doesn't win can contest one division up or down on Day 2 — a second bite at a national team berth (−63 or −74 from −68).</p></div></div>
+      <div class="row"><div><h4>GP host invite</h4><p>If the USA hosts a Grand Prix Series or Challenge (e.g., Charlotte), the host country gets an extra invite — a possible side door into a G6 he isn't yet ranked for.</p></div></div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="block reveal" id="opt1">
+    <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Route 1 · World ranking (top 5)</h2></div>
+    <p class="lede">Build for roughly <strong>180–220 points</strong> on the January 2028 ranking to be safely top 5. Every realistic build needs multiple Grand Prix medals and/or a Worlds result — there's no top-5 path made of opens alone.</p>
+
+    <h3 style="font-size:18px;margin:8px 0 10px;text-transform:none;letter-spacing:0">The season, phase by phase</h3>
+    <div class="grid g2">
+      <div class="card"><div class="k" style="color:var(--hong)">Phase 1 · Q1</div><h3>Break in</h3><p class="small">Two G2 opens (~32 of the 40 cap) + the GP Challenge (uncapped 20) to climb into the top ~70 — the gate to enter a GP Series. Win Nationals/Trials in parallel.</p></div>
+      <div class="card"><div class="k" style="color:var(--hong)">Phase 2 · Spring</div><h3>Continental points</h3><p class="small">Pan Am Championships medal (14–40). Top off the 40 cap, then stop entering opens — they pay nothing more. Lock −68 in the GAL (May 1–25).</p></div>
+      <div class="card"><div class="k" style="color:var(--hong)">Phase 3 · Summer</div><h3>The majors</h3><p class="small">First GP Series run · Pan Am Games Lima (G4) · Pan Am President's Cup (uncapped G3, 30).</p></div>
+      <div class="card"><div class="k" style="color:var(--hong)">Phase 4 · Fall</div><h3>Stack &amp; peak</h3><p class="small">Two more GP Series · 2027 Worlds (even a 9th = 21). Then GP Final in Nov/Dec if he reaches the top 16.</p></div>
+    </div>
+
+    <h3 style="font-size:18px;margin:22px 0 6px;text-transform:none;letter-spacing:0">Three calibrated targets</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Build</th><th>What it takes</th><th class="mono">Points</th><th>Likely outcome</th></tr></thead>
+      <tbody>
+        <tr><td>Floor</td><td>Cap 40 + GP Challenge + Pan Am bronzes + Pres. Cup + a GP Series 9th + Worlds 17th</td><td class="mono">~120–130</td><td>~top 15–25 · strong host case + reallocation live</td></tr>
+        <tr class="hl"><td><strong>Target</strong></td><td>Worlds bronze or two GP Series bronzes + Pan Am Games gold + Pan Am silver + cap 40 — <em>no GP/Worlds gold needed</em></td><td class="mono big">~197</td><td><strong>Top-5 in play</strong></td></tr>
+        <tr><td>Stretch</td><td>A GP Series gold + Pan Am double-gold + Pres. Cup gold + Worlds medal</td><td class="mono">~250+</td><td>Top 3–5 · frees the host seat for another USA man</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">Access gates, in order: opens + GP Challenge + Pan Am lift him into GP-Series eligibility → he must be named to the USA Worlds &amp; Pan Am Games teams to reach the G14/G4 pools → confirm 4-country/4-athlete fields so points count.</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="block reveal" id="opt3">
+    <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">Route 2 · Host quota (the backbone)</h2></div>
+    <p class="lede">Not a points total — a selection decision USATKD makes by 30 Sept 2027. They get up to two men's seats and choose the divisions. The job is to make −68kg the obvious pick and him the obvious athlete.</p>
+    <ul class="clean">
+      <li><strong>Be the undisputed USA −68 #1.</strong> Win U.S. Nationals / Team Trials — this also satisfies the host eligibility floor.</li>
+      <li class="red"><strong>Prove podium potential.</strong> They favor divisions with the best medal upside — Pan Am medals and deep Grand Prix runs make −68 look "spendable."</li>
+      <li class="red"><strong>Beat ranked names (top-30).</strong> Explicitly weighted — and beating established athletes after the reset counts in his favor as a newcomer.</li>
+      <li class="gold"><strong>Peak late.</strong> 2027 results — Worlds and Pan Am Games above all — outweigh anything from 2025–26.</li>
+      <li><strong>Make weight cleanly.</strong> Safe, consistent −68 weight-making is itself a listed selection factor.</li>
+    </ul>
+    <div class="callout"><div class="k">How the seat actually triggers</div>USATKD names −68 a host division <em>and</em> picks him — which only happens if the USA hasn't already filled −68 by ranking (if he's top-5 he doesn't need it) and hasn't qualified 2+ men by ranking (which zeroes the men's host seats). So this route is the net beneath Route 1, inside his own class.</div>
+  </section>
+
+  <!-- 8 -->
+  <section class="block reveal" id="opt4">
+    <div class="sec-head"><span class="sec-num">08</span><h2 class="sec-title">Route 3 · Reallocation (the net)</h2></div>
+    <p class="lede">Finish outside the top 5 but high, and seats can still fall to him when others decline.</p>
+    <ul class="clean">
+      <li>If a higher-ranked athlete or NOC declines its place, the quota drops to the next eligible athlete in −68 (eligibility = a top-20 ranking at some point, a WT-event medal, etc.).</li>
+      <li class="red">Unfilled <strong>continental</strong> seats reallocate to the next-highest-ranked eligible athlete from <em>any</em> continent on the Jan 2028 ranking — a USA athlete can catch one despite being barred from the qualifier.</li>
+      <li class="gold"><strong>The play:</strong> rank as high as humanly possible even if top-5 is out of reach. Every place higher improves the odds — which is why the "Floor ~120–130" build still matters.</li>
+    </ul>
+  </section>
+
+  <!-- 9 -->
+  <section class="block reveal" id="opt2">
+    <div class="sec-head"><span class="sec-num">09</span><h2 class="sec-title">Route 4 · Grand Slam Champions Series</h2></div>
+    <p class="lede">A separate auto-seat for the #1 on Grand Slam merit points — but the entry barrier makes it a long shot for a first-year senior.</p>
+    <ul class="clean">
+      <li>Only 10 athletes per class, and you qualify in <em>only</em> by being a GP Series / GP Final / Worlds gold medalist or a Grand Slam Challenge finalist that year.</li>
+      <li class="gold"><strong>Treat as upside, not plan:</strong> don't decline a Grand Slam Challenge invite if a big result earns one — but build the campaign on Routes 1–3.</li>
+    </ul>
+  </section>
+
+  <!-- 10 -->
+  <section class="block reveal" id="div">
+    <div class="sec-head"><span class="sec-num">10</span><h2 class="sec-title">The −63 / −68 play</h2></div>
+    <p class="lede">Fighting −63 at Worlds while his points build toward −68 Olympic — legal, clever, with one must-do and a few trade-offs.</p>
+    <div class="callout blue"><div class="k">Why it works</div>The −68 Olympic ranking sums three World divisions — <strong>−63, −68, −74</strong> — so a −63 Worlds result flows straight into his −68 Olympic number. If beating the USA −63 senior is the easier path to a Worlds berth, the points still land where he wants them.</div>
+    <div class="callout red"><div class="k">The must-do</div><strong>Lock −68 as his Olympic weight category in the GAL (May 1–25, 2027).</strong> −63 is the overlap that also feeds the −58 Olympic ranking — without −68 selected, his −63 points could strand in −58.</div>
+    <h3 style="font-size:17px;margin:14px 0 6px;text-transform:none;letter-spacing:0">Trade-offs to weigh</h3>
+    <ul class="clean">
+      <li class="red">USATKD's host rubric prioritizes the <strong>heavier</strong> division — they weigh −68 results above −63. Great for the ranking; slightly weaker for the host case.</li>
+      <li>It builds his −63 <em>World</em> ranking, not −68 — fine for the Olympic seat, but it splits his World-ranking footprint and seeding.</li>
+      <li class="red">A bigger cut, plus cycling between −63 (Worlds) and −68 (everything else) — and safe weight-making is a listed selection factor.</li>
+      <li>Confirm the Team-Trials entry path: −68 is a Day-1 division, −63 is Day-2, reached via the cross-division route. Check with USATKD so he isn't boxed out.</li>
+    </ul>
+    <div class="callout"><div class="k">The clean hybrid</div>If −63 is genuinely his easiest route to a Worlds medal, take it — but keep competing <strong>−68</strong> at the Grand Prix Series and Pan Am events so the host selectors still see strong results in the heavier, top-priority class. Win both arguments.</div>
+  </section>
+
+  <!-- 11 -->
+  <section class="block reveal" id="gateway">
+    <div class="sec-head"><span class="sec-num">11</span><h2 class="sec-title">The domestic gateway — the keystone</h2></div>
+    <p class="lede">The single most valuable result of the campaign — the 2027 Worlds berth — is decided at a U.S. Team Trials in <strong>January 2027</strong>. And the work to reach those Trials happens in <strong>2026</strong>. This is where the clock really starts.</p>
+    <div class="grid g3">
+      <div class="card" style="border-left:4px solid var(--chung)"><div class="k" style="color:var(--chung)">Step 1 · 2026</div><h3>Earn a Trials route</h3><p class="small">As a junior in 2026, his door is the "junior ageing-up" route: make the <strong>2026 U.S. Junior National Team</strong>, or the <strong>2026 YOG team</strong>, or finish <strong>top 4 in junior national rankings by Dec 1, 2026</strong> — then compete at <strong>2026 U.S. Nationals (Charlotte, July)</strong>. Feeders: American Open East &amp; West (May–June).</p><p class="small"><em>Note: the U21 route is likely closed — 2026 U21 is birth years 2005–2009, and he's ~2010. Confirm his exact birthdate.</em></p></div>
+      <div class="card" style="border-left:4px solid var(--hong)"><div class="k" style="color:var(--hong)">Step 2 · Jan 14–17, 2027</div><h3>Win Team Trials</h3><p class="small">Memphis, TN. Win −68 (a Day-1 division) outright → nominated to the 2027 Worlds team. Format depends on entries: 2 = best-of-3; 3–4 = round-robin; 5+ = single-elimination. The Top-5-World + Top-28-Olympic auto-shortcut won't apply to a brand-new senior — winning is his route.</p></div>
+      <div class="card" style="border-left:4px solid var(--gold)"><div class="k" style="color:var(--gold-d)">Step 3 · 2027</div><h3>Worlds (Astana)</h3><p class="small">The G14 that anchors the ranking <em>and</em> the marquee result for the host case. January's win is what gets him here.</p></div>
+    </div>
+    <div class="callout"><div class="k">Why this one event matters most</div>Winning the January Trials does three jobs at once: it puts him on the <strong>2027 Worlds team</strong> (biggest points + biggest selection result), crowns him <strong>USA's −68 #1</strong> (the heart of the host case), and clears the host <strong>eligibility floor</strong>. Miss it and the campaign loses its single most important event.</div>
+  </section>
+
+  <!-- 12 -->
+  <section class="block reveal" id="timeline">
+    <div class="sec-head"><span class="sec-num">12</span><h2 class="sec-title">Master timeline</h2></div>
+    <p class="lede">Built backward from the Games. <span style="color:var(--hong);font-weight:600">Red dots = must-win / hard deadlines.</span> <span style="color:var(--gold-d);font-weight:600">Gold = the payoff.</span> Dates beyond 2026 are templated from the 2026 calendar until 2027 posts.</p>
+    <div class="rail">
+      <div class="yr">2026 — build the gateway</div>
+      <div class="ev"><div class="d">May–Jun 2026</div><div class="w">American Open East &amp; West</div><div class="why">Open-entry — build junior national ranking toward a Trials route.</div></div>
+      <div class="ev key"><div class="d">Jul 2026</div><div class="w">2026 U.S. Nationals (Charlotte)</div><div class="why">Required appearance for the junior ageing-up route into Team Trials.</div></div>
+      <div class="ev"><div class="d">Nov 8–12, 2026</div><div class="w">Dakar Youth Olympic Games (if selected)</div><div class="why">Trials route + carryover points (YOG gold = 60).</div></div>
+      <div class="ev key"><div class="d">Dec 1, 2026</div><div class="w">Junior national ranking snapshot</div><div class="why">Top-4 here is one way into the 2027 Senior Team Trials.</div></div>
+
+      <div class="yr">2027 — the decisive season</div>
+      <div class="ev key"><div class="d">Jan 14–17, 2027</div><div class="w">U.S. Senior Team Trials (Memphis) — WIN −68</div><div class="why">The keystone. Wins the 2027 Worlds berth.</div></div>
+      <div class="ev"><div class="d">Q1 2027</div><div class="w">2 × G2 opens + GP Challenge</div><div class="why">Build the 40 cap + uncapped 20; climb into GP-Series eligibility.</div></div>
+      <div class="ev"><div class="d">~Mar 2027</div><div class="w">US Open (Las Vegas)</div><div class="why">Home G2; keep domestic #1 visible.</div></div>
+      <div class="ev"><div class="d">Spring 2027</div><div class="w">Pan Am Championships (G4)</div><div class="why">Continental medal — uncapped points + host evidence.</div></div>
+      <div class="ev key"><div class="d">May 1–25, 2027</div><div class="w">Lock −68 in the GAL system</div><div class="why">So −63/−68/−74 points all land in −68 Olympic.</div></div>
+      <div class="ev"><div class="d">Jun / Sep / Oct 2027</div><div class="w">GP Series ×3 (Rome / Muju / Paris type)</div><div class="why">G6 — the core of the ranking build (60 / medal 21.6).</div></div>
+      <div class="ev"><div class="d">Jul 16 – Aug 1, 2027</div><div class="w">Pan Am Games (Lima)</div><div class="why">G4 + a Delegation Event the selectors weigh heavily.</div></div>
+      <div class="ev"><div class="d">~Aug 2027</div><div class="w">Pan Am President's Cup (Lima type)</div><div class="why">Uncapped G3 — 30 for gold.</div></div>
+      <div class="ev win"><div class="d">2027 (TBD)</div><div class="w">World Championships (Astana)</div><div class="why">G14 — biggest points + biggest host-selection result.</div></div>
+      <div class="ev key"><div class="d">Sep 30, 2027</div><div class="w">USATKD confirms host divisions</div><div class="why">The host case must be won before this date.</div></div>
+      <div class="ev"><div class="d">Nov/Dec 2027</div><div class="w">GP Final (if top 16) · Grand Slam (if qualified)</div><div class="why">Last ranking points before the quota snapshot.</div></div>
+
+      <div class="yr">2028 — confirmation &amp; the Games</div>
+      <div class="ev key"><div class="d">Jan 6–11, 2028</div><div class="w">WT Olympic Ranking published</div><div class="why">Decides the top-5 ranking seats.</div></div>
+      <div class="ev"><div class="d">Feb–Apr 2028</div><div class="w">Continental qualifiers (USA barred — watch for reallocation)</div><div class="why">Unfilled seats can reallocate by the Jan ranking.</div></div>
+      <div class="ev"><div class="d">May 16, 2028</div><div class="w">WT reallocates unused quotas</div><div class="why">Final shot for a high-ranked athlete to be pulled up.</div></div>
+      <div class="ev"><div class="d">Jun 26, 2028</div><div class="w">LA28 sport entries deadline</div></div>
+      <div class="ev win"><div class="d">Jul 14–30, 2028</div><div class="w">LA28 Olympic Games</div><div class="why">Host athletes seeded 4th.</div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="block reveal" id="tree">
+    <div class="sec-head"><span class="sec-num">13</span><h2 class="sec-title">How the routes interact</h2></div>
+    <p class="lede">One campaign. Four nets stacked under each other. He chases the ranking — everything else catches him if it falls short.</p>
+    <div class="tree">
+Run ONE 2027 campaign &rarr; rank as high as possible<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├─ Finish <b>TOP 5</b> at −68 ............ <span class="bl">Route 1</span> &rarr; <span class="g">IN</span> (no host seat used)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├─ Be USA's clear <b>#1</b> + résumé ..... <span class="rd">Route 2</span> &rarr; <span class="g">IN</span> via host quota<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;(if USA hasn't filled −68 / 2+ men by ranking)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├─ Finish <b>6th–20th</b>, seats decline .. <span class="bl">Route 3</span> &rarr; possible <span class="g">IN</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└─ Exceptional <b>gold</b> year .......... <span class="rd">Route 4</span> &rarr; Grand Slam bonus
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="block reveal" id="risks">
+    <div class="sec-head"><span class="sec-num">14</span><h2 class="sec-title">Traps to avoid</h2></div>
+    <ul class="clean">
+      <li class="red"><strong>Grinding opens for ranking</strong> — capped at 40 in 2027. A money-and-body sink with a hard ceiling.</li>
+      <li class="red"><strong>A bad weight cut</strong> at a key event — damages the result <em>and</em> the selection case.</li>
+      <li class="red"><strong>Skipping Nationals / Trials</strong> — miss them and he's not USATKD's pick: no Worlds or Pan Am team spot (no big points) and no host nod.</li>
+      <li class="red"><strong>Dead events</strong> — fewer than 4 countries / 4 athletes in the division pays zero ranking points.</li>
+      <li class="red"><strong>Banking on closed doors</strong> — the Pan Am qualifier (host-barred) or the Grand Slam Series (elite-entry only).</li>
+      <li class="red"><strong>Letting paperwork or anti-doping lapse</strong> — GAL, medical certificate, whereabouts. Any gap is an instant disqualifier.</li>
+    </ul>
+  </section>
+
+  <!-- 15 -->
+  <section class="block reveal" id="act">
+    <div class="sec-head"><span class="sec-num">15</span><h2 class="sec-title">Do this now</h2></div>
+    <ul class="clean">
+      <li class="gold"><strong>Lock the 2026 gateway.</strong> Pin down his route into the Jan 2027 Team Trials (junior national team / YOG team / top-4 by Dec 1, 2026) and register for 2026 U.S. Nationals. Everything depends on this.</li>
+      <li><strong>Email USATKD High Performance</strong> (Lambdin / Wininger): confirm the exact junior ageing-up route, ask how they'll evaluate −68 for a host seat, and ask about the National Academy resident program in Charlotte.</li>
+      <li><strong>Verify junior-medal carryover</strong> into his 2027 senior ranking — possibly free banked points.</li>
+      <li><strong>Calendar two dates:</strong> Jan 14–17, 2027 (Team Trials) and May 1–25, 2027 (lock −68 in the GAL).</li>
+      <li><strong>Build the weight plan</strong> for safe, repeatable −68 cuts — and decide the −63 question (§10) before the season starts.</li>
+      <li><strong>Draft the 2027 event list</strong> against this template; finalize when WT posts the 2027 calendar.</li>
+    </ul>
+  </section>
+
+  <!-- 16 -->
+  <section class="block reveal" id="checklist">
+    <div class="sec-head"><span class="sec-num">16</span><h2 class="sec-title">Checklist</h2></div>
+    <p class="lede">Tick as he goes (or print and check by hand). It runs on event <strong>grades</strong> for now — <strong>once the 2027 WT calendar is uploaded, these become named, dated events.</strong></p>
+
+    <div class="checklist">
+      <div class="cl-group">
+        <h3>Foundations · keep live at all times</h3>
+        <label class="check"><input type="checkbox"><span>Kukkiwon Dan certificate &amp; WT Global Athlete License active</span></label>
+        <label class="check"><input type="checkbox"><span>U.S. passport valid 6+ months past the Games</span></label>
+        <label class="check"><input type="checkbox"><span>GMS registration, annual medical certificate &amp; travel insurance current</span></label>
+        <label class="check"><input type="checkbox"><span>SafeSport training + anti-doping / whereabouts compliance up to date</span></label>
+      </div>
+
+      <div class="cl-group">
+        <h3>2026 · the gateway</h3>
+        <label class="check"><input type="checkbox"><span>Compete at American Open East and/or West (build junior national ranking)</span></label>
+        <label class="check"><input type="checkbox"><span>Compete at 2026 U.S. Nationals (required for the junior route)</span></label>
+        <label class="check"><input type="checkbox"><span>Lock a route into the 2027 Team Trials: 2026 Junior National Team <em>or</em> 2026 YOG team <em>or</em> top-4 junior national ranking by Dec 1, 2026</span></label>
+        <label class="check"><input type="checkbox"><span>Confirm his exact birthdate against the U21 age window</span></label>
+        <label class="check"><input type="checkbox"><span>Verify any junior-medal carryover points into the 2027 senior ranking</span></label>
+      </div>
+
+      <div class="cl-group">
+        <h3>January 2027 · Team Trials</h3>
+        <label class="check"><input type="checkbox"><span>Make the 2027 U.S. Senior Team Trials field</span></label>
+        <label class="check"><input type="checkbox"><span>Decide division: −68 (Day 1) <em>or</em> −63 via the Day-2 route</span></label>
+        <label class="check"><input type="checkbox"><span><strong>WIN the Trials</strong> → 2027 World Championships berth</span></label>
+      </div>
+
+      <div class="cl-group">
+        <h3>2027 season · points plan <span style="color:var(--muted-2);font-weight:400;text-transform:none;letter-spacing:0">(swap grades for named events when the calendar drops)</span></h3>
+        <label class="check"><input type="checkbox"><span>Win 2 × <span class="g">G2</span> international opens — fills the 40-pt cap</span></label>
+        <label class="check"><input type="checkbox"><span>Medal at the GP Challenge <span class="g">G2</span> — uncapped, ~20 pts</span></label>
+        <label class="check"><input type="checkbox"><span>Medal at Pan Am Championships <span class="g">G4</span></span></label>
+        <label class="check"><input type="checkbox"><span>Lock −68 as Olympic category in the GAL (May 1–25)</span></label>
+        <label class="check"><input type="checkbox"><span>Enter and score at ≥1 GP Series <span class="g">G6</span> — target 3</span></label>
+        <label class="check"><input type="checkbox"><span>Medal at Pan Am Games <span class="g">G4</span></span></label>
+        <label class="check"><input type="checkbox"><span>Win the Pan Am President's Cup <span class="g">G3</span> — uncapped, ~30 pts</span></label>
+        <label class="check"><input type="checkbox"><span>Compete at the World Championships <span class="g">G14</span></span></label>
+        <label class="check"><input type="checkbox"><span>GP Final <span class="g">G10</span> if he reaches the top 16</span></label>
+        <label class="check"><input type="checkbox"><span>Skip any sub-4-country / sub-4-athlete division (zero points)</span></label>
+      </div>
+
+      <div class="cl-group">
+        <h3>Selection &amp; deadlines</h3>
+        <label class="check"><input type="checkbox"><span>Be USA's clear −68 #1 with podium-potential results (host case)</span></label>
+        <label class="check"><input type="checkbox"><span>Bank wins over top-30-ranked opponents where possible</span></label>
+        <label class="check"><input type="checkbox"><span>Host divisions confirmed by USATKD — Sep 30, 2027 (case made before then)</span></label>
+        <label class="check"><input type="checkbox"><span>WT Olympic Ranking published — Jan 2028 (target top 5 / rank as high as possible)</span></label>
+      </div>
+    </div>
+    <p class="small">Note: ticks reset if the page is reloaded — print a copy for a permanent tracker, or re-tick each session.</p>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="eyebrow">Road to LA28 · Men's −68kg</div>
+  <p style="margin-top:10px">A planning dossier, not an official document. Point values are exact from the WT Ranking Bylaw; placements, dates after 2026, and ranking thresholds are planning estimates. Rules and calendars change — confirm against the latest WT and USATKD postings, and treat the published USATKD Athlete Selection Procedures as the binding word on the host pick.</p>
+</footer>
+
+<script>
+  // mobile nav toggle
+  var btn=document.getElementById('navbtn'),toc=document.getElementById('toc');
+  btn&&btn.addEventListener('click',function(){toc.classList.toggle('open');});
+  toc.addEventListener('click',function(e){if(e.target.tagName==='A'){toc.classList.remove('open');}});
+
+  // scrollspy
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  var so=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){l.classList.remove('active');});
+        var a=map[e.target.id]; if(a)a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section.block').forEach(function(s){so.observe(s);});
+
+  // reveal on scroll
+  var ro=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});
+  },{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+</script>
+</body>
+</html>
